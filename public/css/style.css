@@ -554,7 +554,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-blog,
 #fh5co-contact,
 #fh5co-footer {
-  padding: 7em 0;
+  padding: 20em 0;
   clear: both;
 }
 @media screen and (max-width: 768px) {
@@ -696,14 +696,14 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .fh5co-tabs {
   width: 90%;
-  margin: 0;
+  margin: 0 auto;
 }
 .fh5co-tabs .fh5co-tab-nav {
+  display: flex;
+  justify-content: space-around;
   clear: both;
   margin: 0;
- display: flex;
- padding: 0;
- justify-content: space-between;
+  padding: 0;
   float: left;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
@@ -722,7 +722,7 @@ h1, h2, h3, h4, h5, h6, figure {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
-  /* *display: inline; */
+  *display: inline;
 }
 .fh5co-tabs .fh5co-tab-nav li a {
   padding: 10px;
