@@ -34,6 +34,18 @@ app.get('/pricing',(req,res)=>{
     res.render('pricing')
 })
 
+app.get('/weightlifting',(req,res)=>{
+    res.render('weightlifting')
+})
+
+app.get('/yoga',(req,res)=>{
+    res.render('yoga')
+})
+
+app.get('/running',(req,res)=>{
+    res.render('running')
+})
+
 app.listen(3000,()=>{
     console.log('connect to server');
 })
