@@ -12,9 +12,9 @@ app.set('views',path.join(__dirname,'views'));
 //mongoose connect
 
 mongoose
-  .connect(
-    "mongodb+srv://shapeShiftDB:mukulbhai16@cluster0.vmp43iw.mongodb.net/?retryWrites=true&w=majority"
-  )
+.connect(
+  "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
+)
   .then(() => {
     console.log("mongoose connected");
   })
@@ -73,8 +73,8 @@ app.post("/index", async (req, res) => {
       res.send("incorrect password");
     }
   } catch (e) {
-    res.render("index");
-    // res.send("Something Went Wrong");
+    // res.render("index");
+    res.send("Something Went Wrong");
   }
 });
 
