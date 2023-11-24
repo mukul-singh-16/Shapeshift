@@ -64,7 +64,7 @@ app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-app.post("/login", async (req, res) => {
+app.post("/index", async (req, res) => {
   try {
     const check = await auth.findOne({ email: req.body.email });
     if (check.pass === req.body.password) {
