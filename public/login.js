@@ -32,3 +32,17 @@ signUp.addEventListener("click", () => {
 login.addEventListener("click", () => {
   container.classList.remove("active");
 });
+
+//shake container
+let btn = document.getElementsByTagName("button")[0];
+let email = document.getElementById("inp-email");
+let pass = document.getElementById("inp-pass");
+
+btn.addEventListener("click", (e) => {
+  if (email.value.length == 0 || pass.value.length == 0) {
+    btn.classList.add("error");
+    setTimeout(() => {
+      cont.classList.remove("error");
+    }, 1000);
+  }
+});

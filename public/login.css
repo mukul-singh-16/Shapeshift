@@ -5,49 +5,42 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    
+
 }
 
-
-body {
-    background-image:  url('bg.jpg');
-    background-size: 100%;
-    
-    display: flex;
-    /* flex-direction: column; */
-    /* align-items: center; */
-    justify-content: center;
+a {
+    cursor: pointer;
 }
 
-
+/* to cover full image in background */
+html {
+    background: url('./images/logIN.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
 .container {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: rgba(53, 53, 53, 0.596);
-   margin: 0 auto;
-    /* position: relative; */
-    max-width: 430px;
-    width: 100%;
-    
-
-    
+    width: 430px;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin: 0 20px;
-    padding-bottom: 20px;
+    padding: 25px 30px;
 }
 
 .container .forms {
-    /* border: 2px solid red; */
     display: flex;
     align-items: center;
     height: 440px;
     width: 200%;
     transition: height 0.2s ease;
+
 }
 
 
@@ -81,6 +74,7 @@ body {
     position: relative;
     font-size: 27px;
     font-weight: 600;
+    color: #cc450b;
 }
 
 .form .title::before {
@@ -91,6 +85,7 @@ body {
     height: 3px;
     width: 30px;
     background-color: #ef0e0e;
+    /* background-color: black; */
     border-radius: 25px;
 }
 
@@ -176,7 +171,8 @@ body {
     height: 100%;
     width: 100%;
     border: none;
-    color: #ffffff;;
+    color: #ffffff;
+    ;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -193,4 +189,35 @@ button:hover {
 .form .login-signup {
     margin-top: 30px;
     text-align: center;
+}
+
+.error {
+    border: 2px solid red;
+    animation: shake 0.1s linear 10;
+}
+
+@keyframes shake {
+    0% {
+        border-color: red;
+        transform: translate(0);
+    }
+
+    25% {
+        border-color: red;
+        transform: translate(-2px);
+    }
+
+    50% {
+        border-color: red;
+        transform: translate(0);
+    }
+
+    75% {
+        border-color: red;
+        transform: translate(2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }

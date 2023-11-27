@@ -10,24 +10,24 @@
 </head>
 
 <body>
-   <div class="head">
-    <!-- <h1 style=" color:white; font-size: 6.3vw; letter-spacing: 1px; text-align: center;">Welcome  to  Shapeshift</h1> -->
-   </div>
-  
-    
+    <div class="head">
+        <!-- <h1 style=" color:white; font-size: 6.3vw; letter-spacing: 1px; text-align: center;">Welcome  to  Shapeshift</h1> -->
+    </div>
+
+
     <div class="container">
-        
+
         <div class="forms">
             <div class="form login">
                 <span class="title">Login</span>
                 <form action="/index" method="post">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your email" name="email" required>
+                        <input id="inp-email" type="text" placeholder="Enter your email" name="email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Enter your password" name="password"
-                            required>
+                        <input type="password" id="inp-pass" class="password" placeholder="Enter your password"
+                            name="password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -81,6 +81,11 @@
                         <button type="submit">Signup</button>
                     </div>
                 </form>
+                <div class="login-signup">
+                    <span class="text">Already have an account?
+                        <a class="text login-link">Log In</a>
+                    </span>
+                </div>
             </div>
         </div>
     </div>

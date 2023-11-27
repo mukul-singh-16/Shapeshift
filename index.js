@@ -1,20 +1,18 @@
-
 const express = require("express");
-const app=express();
-const path=require('path');
+const app = express();
+const path = require("path");
 const mongoose = require("mongoose");
+app.use(express.urlencoded({ extended: false }));
 
-app.use(express.urlencoded({extended:false}))
-
-app.use(express.static(path.join(__dirname,'public')))
-app.set("view engine",'ejs');
-app.set('views',path.join(__dirname,'views'));
+app.use(express.static(path.join(__dirname, "public")));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 //mongoose connect
 
 mongoose
-.connect(
-  "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
-)
+  .connect(
+    "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() => {
     console.log("mongoose connected");
   })
@@ -22,27 +20,24 @@ mongoose
     console.log("failed");
   });
 
+//schema
 
-  //schema
+const authentication = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  pass: {
+    type: String,
+    required: true,
+  },
+});
 
-  const authentication = new mongoose.Schema({
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    pass: {
-      type: String,
-      required: true,
-    },
-  });
-
-
-
-  const auth = mongoose.model("auth", authentication);
+const auth = mongoose.model("auth", authentication);
 
 app.post("/signup", async (req, res) => {
   try {
@@ -51,8 +46,6 @@ app.post("/signup", async (req, res) => {
       email: req.body.email,
       pass: req.body.password,
     });
-    // console.log(data.username);
-    // console.log(data);
     await data.save();
   } catch (err) {
     console.log(err);
@@ -70,58 +63,51 @@ app.post("/index", async (req, res) => {
     if (check.pass === req.body.password) {
       res.render("index");
     } else {
-      res.send("incorrect password");
+      res.send("email or password is incorrect");
     }
   } catch (e) {
-    // res.render("index");
     res.send("Something Went Wrong");
   }
 });
 
+app.post("/home", (req, res) => {
+  res.render("index");
+});
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
 
+app.post("/about", (req, res) => {
+  res.render("about");
+});
 
+app.post("/blog", (req, res) => {
+  res.render("blog");
+});
+app.post("/contact", (req, res) => {
+  res.render("contact");
+});
+app.post("/gallery", (req, res) => {
+  res.render("gallery");
+});
 
+app.post("/pricing", (req, res) => {
+  res.render("pricing");
+});
 
+app.post("/weightlifting", (req, res) => {
+  res.render("weightlifting");
+});
 
+app.post("/yoga", (req, res) => {
+  res.render("yoga");
+});
 
-app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname, "public", "login.html"));
-})
-app.get('/index',(req,res)=>{
-    res.render('index')
-})
+app.post("/running", (req, res) => {
+  res.render("running");
+});
 
-app.get('/about',(req,res)=>{
-    res.render('about')
-})
-
-app.get('/blog',(req,res)=>{
-    res.render('blog')
-})
-app.get('/contact',(req,res)=>{
-    res.render('contact')
-})
-app.get('/gallery',(req,res)=>{
-    res.render('gallery')
-})
-
-app.get('/pricing',(req,res)=>{
-    res.render('pricing')
-})
-
-app.get('/weightlifting',(req,res)=>{
-    res.render('weightlifting')
-})
-
-app.get('/yoga',(req,res)=>{
-    res.render('yoga')
-})
-
-app.get('/running',(req,res)=>{
-    res.render('running')
-})
-
-app.listen(3000,()=>{
-    console.log('connect to server');
-})
+app.listen(3000, () => {
+  console.log("connect to server");
+});
