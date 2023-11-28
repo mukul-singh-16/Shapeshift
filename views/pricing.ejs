@@ -49,43 +49,30 @@
 
 	<div id="page">
 		<nav class="fh5co-nav" role="navigation">
-			<div class="top">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12 text-right">
-							<p class="num">Call: +91 9126692078</p>
-							<ul class="fh5co-social">
-								<li><a href="#"><i class="icon-twitter"></i></a></li>
-								<li><a href="#"><i class="icon-dribbble"></i></a></li>
-								<li><a href="#"><i class="icon-github"></i></a></li>
-							</ul>
+			<%- include('./partial/upper_nav') -%>
+				<div class="top-menu">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-2">
+								<div id="fh5co-logo"><a href="home">Shapeshift</a></div>
+							</div>
+							<div class="col-xs-10 text-right menu-1">
+								<ul>
+									<li><a class="postForm" href="home">Home</a></li>
+									<li><a class="postForm" href="gallery">Gallery</a></li>
+									<li><a class="postForm" href="trainer">Trainer</a></li>
+									<li class="active"><a class="postForm" href="pricing">Pricing</a></li>
+									<li>
+										<a class="postForm" href="blog">Blog</a>
+									</li>
+									<li><a class="postForm" href="contact">Contact</a></li>
+									<!-- <li class="btn-cta"><a href="#"><span>Login</span></a></li> -->
+								</ul>
+							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div class="top-menu">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-2">
-							<div id="fh5co-logo"><a href="index">Shapeshift</a></div>
-						</div>
-						<div class="col-xs-10 text-right menu-1">
-							<ul>
-								<li><a class="postForm" href="home">Home</a></li>
-								<li><a class="postForm" href="gallery">Gallery</a></li>
-								<li><a class="postForm" href="about">Trainer</a></li>
-								<li class="active"><a class="postForm" href="pricing">Pricing</a></li>
-								<li>
-									<a class="postForm" href="blog">Blog</a>
-								</li>
-								<li><a class="postForm" href="contact">Contact</a></li>
-								<!-- <li class="btn-cta"><a href="#"><span>Login</span></a></li> -->
-							</ul>
-						</div>
-					</div>
 
+					</div>
 				</div>
-			</div>
 		</nav>
 
 		<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner"

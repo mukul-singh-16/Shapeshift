@@ -3,44 +3,30 @@
 
     <div id="page">
         <nav class="fh5co-nav" role="navigation">
-            <div class="top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 text-right">
-                            <p class="num">Call: + 91 8126692078</p>
-                            <ul class="fh5co-social">
-                                <li><a href="#"><i class="icon-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                                <li><a href="#"><i class="icon-github"></i></a></li>
-                            </ul>
+            <%- include('./partial/upper_nav') -%>
+                <div class="top-menu">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div id="fh5co-logo"><a href="home">Shapeshift</a></div>
+                            </div>
+                            <div class="col-xs-10 text-right menu-1">
+                                <ul>
+                                    <li class="active"><a class="postForm" href="home">Home</a></li>
+                                    <li><a class="postForm" href="gallery">Gallery</a></li>
+                                    <li><a class="postForm" href="trainer">Trainer</a></li>
+                                    <li><a class="postForm" href="pricing">Pricing</a></li>
+                                    <li>
+                                        <a class="postForm" href="blog">Blog</a>
+                                    </li>
+                                    <li><a class="postForm" href="contact">Contact</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="top-menu">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <div id="fh5co-logo"><a href="index">Shapeshift</a></div>
-                        </div>
-                        <div class="col-xs-10 text-right menu-1">
-                            <ul>
-                                <li class="active"><a class="postForm" href="home">Home</a></li>
-                                <li><a class="postForm" href="gallery">Gallery</a></li>
-                                <li><a class="postForm" href="about">Trainer</a></li>
-                                <li><a class="postForm" href="pricing">Pricing</a></li>
-                                <li>
-                                    <a class="postForm" href="blog">Blog</a>
-                                </li>
-                                <li><a class="postForm" href="contact">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
         </nav>
-
         <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/herooo.jpg);"
             data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
@@ -48,8 +34,10 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center">
                         <div class="display-t">
-                            <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                                <h1 style="font-weight: 1000; letter-spacing: 1px; font-size: 70px;">Make it a
+                            <div class=".display-tc animate-box" data-animate-effect="fadeIn">
+                                <h1 id="hero-text">
+                                    Make
+                                    it a
                                     lifestyle, not a duty.</h1>
                                 <!-- <p><a  href="https://vimeo.com/channels/staffpicks/93951774"
                                         class="btn btn-primary popup-vimeo">Watch Our Video</a></p> -->
@@ -59,7 +47,6 @@
                 </div>
             </div>
         </header>
-
         <div id="fh5co-services" class="fh5co-bg-section">
             <div class="container">
                 <div class="row">
@@ -68,7 +55,7 @@
                             <span><img class="img-responsive" src="images/dumbbell.svg" alt=""></span>
                             <h3>Weight Lifting</h3>
                             <p>"I lift heavy, work hard, and aim to be the best."</p>
-                            <p><a href="weightlifting" class="btn btn-primary btn-outline btn-sm">More <i
+                            <p><a class="postForm" href="weightlifting" class="btn btn-primary btn-outline btn-sm">More <i
                                         class="icon-arrow-right"></i></a></p>
                         </div>
                     </div>
@@ -77,7 +64,7 @@
                             <span><img class="img-responsive" src="images/exercise.svg" alt=""></span>
                             <h3>Running</h3>
                             <p>"NO EXCUSES. A one hour run is 4% of your day. "</p>
-                            <p><a href="running" class="btn btn-primary btn-outline btn-sm">More <i
+                            <p><a class="postForm" href="running" class="btn btn-primary btn-outline btn-sm">More <i
                                         class="icon-arrow-right"></i></a></p>
                         </div>
                     </div>
@@ -86,7 +73,7 @@
                             <span><img class="img-responsive" src="images/yoga-carpet.svg" alt=""></span>
                             <h3>Yoga</h3>
                             <p>"Yoga is the journey of the self, through the self, to the self."</p>
-                            <p><a href="yoga" class="btn btn-primary btn-outline btn-sm">More <i
+                            <p><a class="postForm" href="yoga" class="btn btn-primary btn-outline btn-sm">More <i
                                         class="icon-arrow-right"></i></a></p>
                         </div>
                     </div>
@@ -266,7 +253,7 @@
                                     </li>
                                     <li class="text-center">
                                         <img width="100%" height="100%"
-                                            src="https://drive.google.com/uc?export=view&id=16t7DGpk3e9PVYgrF6P2frebG2lbU07Ge"
+                                            src="https://drive.google.com/uc?export=view&id=16t7DGpk3e9PVYgrF6P2    ebG2lbU07Ge"
                                             alt="">
 
                                     </li>
@@ -605,7 +592,8 @@
                                 <a href="#">
                                     <div class="case-studies-summary">
 
-                                        <h4 style="color: white;">“Success usually comes to those who are too busy to be
+                                        <h4 style="color: white;">“Success usually comes to those who are too busy
+                                            to be
                                             looking for it.”</h4>
                                     </div>
                                 </a>
@@ -616,7 +604,8 @@
                                 <a href="#">
                                     <div class="case-studies-summary">
 
-                                        <h4 style="color: white;">“If you want something you’ve never had, you must be
+                                        <h4 style="color: white;">“If you want something you’ve never had, you must
+                                            be
                                             willing to do something you’ve never done.”</h4>
                                     </div>
                                 </a>
@@ -627,7 +616,8 @@
                                 <a href="#">
                                     <div class="case-studies-summary">
 
-                                        <h4 style="color: white;">“Once you are exercising regularly, the hardest thing
+                                        <h4 style="color: white;">“Once you are exercising regularly, the hardest
+                                            thing
                                             is to stop it.”</h4>
                                     </div>
                                 </a>
@@ -637,7 +627,8 @@
                                 <a href="#">
                                     <div class="case-studies-summary">
 
-                                        <h4 style="color: white;">“If you don’t make time for exercise, you’ll probably
+                                        <h4 style="color: white;">“If you don’t make time for exercise, you’ll
+                                            probably
                                             have to make time for illness.”</h4>
                                     </div>
                                 </a>
@@ -686,8 +677,10 @@
                                         </figure>
                                         <span>Mohit verma <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
-                                            <p>&ldquo;word mountains, far from the countries Vokalia and Consonantia,
-                                                there live the blind texts. Separated they live in Bookmarksgrove right
+                                            <p>&ldquo;word mountains, far from the countries Vokalia and
+                                                Consonantia,
+                                                there live the blind texts. Separated they live in Bookmarksgrove
+                                                right
                                                 at the coast of the Semantics, a large language ocean.&rdquo;</p>
                                         </blockquote>
                                     </div>
@@ -699,7 +692,8 @@
                                         </figure>
                                         <span> Arya Uttam <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
-                                            <p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the
+                                            <p>&ldquo;Separated they live in Bookmarksgrove right at the coast of
+                                                the
                                                 Semantics, a large language ocean.&rdquo;</p>
                                         </blockquote>
                                     </div>
@@ -712,7 +706,8 @@
                                         <span> CBUM <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
                                             <p>&ldquo;Far from the countries Vokalia and Consonantia, there live the
-                                                blind texts. Separated they live in Bookmarksgrove right at the coast of
+                                                blind texts. Separated they live in Bookmarksgrove right at the
+                                                coast of
                                                 the Semantics, a large language ocean.&rdquo;</p>
                                         </blockquote>
                                     </div>
@@ -759,10 +754,14 @@
                                 <h3><a href="" #>Is banana good for weight loss?</a></h3>
                                 <span class="posted_on">Sep. 15th</span>
                                 <span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-                                <p>Bananas Are A Healthful Addition To A Balanced Diet For Weight Loss, As They Provide
-                                    A Range Of Vital Nutrients And Are A Good Source Of Fiber. Bananas Make An Excellent
-                                    Snack Food, Dessert Or Breakfast. Their Versatility Makes Them Easy To Add To Your
-                                    Diet Plan For Weight Loss."There is absolutely nothing wrong with eating bananas as
+                                <p>Bananas Are A Healthful Addition To A Balanced Diet For Weight Loss, As They
+                                    Provide
+                                    A Range Of Vital Nutrients And Are A Good Source Of Fiber. Bananas Make An
+                                    Excellent
+                                    Snack Food, Dessert Or Breakfast. Their Versatility Makes Them Easy To Add To
+                                    Your
+                                    Diet Plan For Weight Loss."There is absolutely nothing wrong with eating bananas
+                                    as
                                     a part of a balanced diet rich in whole foods.
                                 </p>
                                 <a href="#" class="btn btn-primary">Read More</a>
@@ -776,11 +775,14 @@
                                 <h3><a href="" #>One of the most protein-rich fruits around-Guava</a></h3>
                                 <span class="posted_on">Sep. 15th</span>
                                 <span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-                                <p>Guava is one of the most protein-rich fruits around. You’ll get a whopping 4.2 grams
-                                    of the stuff in every cup. This tropical fruit is also high in vitamin C and fiber.
+                                <p>Guava is one of the most protein-rich fruits around. You’ll get a whopping 4.2
+                                    grams
+                                    of the stuff in every cup. This tropical fruit is also high in vitamin C and
+                                    fiber.
                                     You can even eat the seeds and
                                     skin, so there’s nothing to clean up!.A full 1-cup serving of guava provides 112
-                                    calories and over 23 grams of carbohydrates.A full 1-cup serving of guava provides
+                                    calories and over 23 grams of carbohydrates.A full 1-cup serving of guava
+                                    provides
                                     112 cal and over 23 grams of carb..The glycemic index of guava is
                                     12-24, which is very low for fruit.</p>
                                 <a href="#" class="btn btn-primary">Read More</a>

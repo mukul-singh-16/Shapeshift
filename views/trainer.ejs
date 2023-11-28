@@ -4,12 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Shapeshift &mdash;</title>
+	<title>Shapeshift</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content="" />
 	<meta property="og:image" content="" />
 	<meta property="og:url" content="" />
@@ -39,8 +37,13 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 
+	<!-- bmi css -->
+	<link rel="stylesheet" href="css/bmistyle.css">
+
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- bmicss -->
+	<script src="js/bmiscript.js" defer></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -65,12 +68,12 @@
 								<ul>
 									<li><a class="postForm" href="home">Home</a></li>
 									<li><a class="postForm" href="gallery">Gallery</a></li>
-									<li><a class="postForm" href="trainer">Trainer</a></li>
+									<li class="active"><a class="postForm" href="trainer">Trainer</a></li>
 									<li><a class="postForm" href="pricing">Pricing</a></li>
 									<li>
 										<a class="postForm" href="blog">Blog</a>
 									</li>
-									<li class="active"><a class="postForm" href="contact">Contact</a></li>
+									<li><a class="postForm" href="contact">Contact</a></li>
 									<!-- <li class="btn-cta"><a href="#"><span>Login</span></a></li> -->
 								</ul>
 							</div>
@@ -88,80 +91,102 @@
 					<div class="col-md-8 col-md-offset-2 text-center">
 						<div class="display-t">
 							<div class="display-tc animate-box" data-animate-effect="fadeIn">
-								<h1>Contact Us</h1>
+								<h1>Fitness Trainer</h1>
+								<!-- <h2>Free html5 templates Made by <a href="http://freehtml5.co" target="_blank">freehtml5.co</a></h2> -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</header>
-		<!-- <div id="map" class="fh5co-map"></div> -->
-		<iframe
-			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.6075780134706!2d77.59074957460876!3d27.605693429969193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39736ce47bffc039%3A0xfe5fc3da92c6341!2sGLA%20University!5e0!3m2!1sen!2sin!4v1701157431605!5m2!1sen!2sin"
-			style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-		<!-- END map -->
+		<div id="fh5co-started" class="fh5co-bg" style="background-color: white; height: 400px;">
 
-		<div id="fh5co-contact">
+			<div class="wrapper">
+				<h3>
+					BMI Calculator
+				</h3>
+				<p style="color: black;">Height in CM:
+					<input type="text" id="height"><br><span id="height_error"></span>
+				</p>
+
+				<p style="color: black;">Weight in KG:
+					<input type="text" id="weight"><br><span id="weight_error"></span>
+				</p>
+
+				<button id="btn" class="btn btn-default btn-lg">Calculate</button>
+				<p style="color: black;" id="output"></p>
+			</div>
+
+		</div>
+
+		<div id="fh5co-trainer">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-md-push-1 animate-box">
-
-						<div class="fh5co-contact-info">
-							<h3>Contact Information</h3>
-							<ul>
-								<li class="address">priya nagri nhroli thana, <br> Mathura</li>
-								<li class="phone"><a href="tel://123456789">+ 123456789</a></li>
-								<li class="email"><a href="abc@gmail.com">abc@gmail</a></li>
-							</ul>
-						</div>
-
-					</div>
-					<div class="col-md-6 animate-box">
-						<h3>Get In Touch</h3>
-						<form action="#">
-							<div class="row form-group">
-								<div class="col-md-6">
-									<!-- <label for="fname">First Name</label> -->
-									<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-								</div>
-								<div class="col-md-6">
-									<!-- <label for="lname">Last Name</label> -->
-									<input type="text" id="lname" class="form-control" placeholder="Your lastname">
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="email">Email</label>
-									<input type="text" id="email" class="form-control" placeholder="Your email address">
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="subject">Subject</label>
-									<input type="text" id="subject" class="form-control"
-										placeholder="Your subject of this message">
-								</div>
-							</div>
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="message">Message</label>
-									<textarea name="message" id="message" cols="30" rows="10" class="form-control"
-										placeholder="Say something about us"></textarea>
-								</div>
-							</div>
-							<div class="form-group">
-								<input type="submit" value="Send Message" class="btn btn-primary">
-							</div>
-
-						</form>
+				<div class="row animate-box">
+					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+						<h2>Fitness Expert</h2>
+						<p>“The harder you work and the more prepared you are for something, you’re going to be able
+							to
+							persevere through anything.”</p>
 					</div>
 				</div>
-
+				<div class="row">
+					<div class="col-md-4 col-sm-4 animate-box">
+						<div class="trainer">
+							<a href="#"><img class="img-responsive" src="images/DSC_0261.jpg" alt="trainer"></a>
+							<div class="title">
+								<h3><a href="#">ARYAN UTTAM</a></h3>
+								<span>BODY BUILDING EXPERT</span>
+							</div>
+							<div class="desc text-center">
+								<ul class="fh5co-social-icons">
+									<li><a href="https://www.instagram.com/aryanuttam666/"><i
+												class="icon-instagram"></i></a></li>
+									<li><a href="#"><i class="icon-facebook"></i></a></li>
+									<li><a href="#"><i class="icon-linkedin"></i></a></li>
+									<li><a href="#"><i class="icon-github"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 animate-box">
+						<div class="trainer">
+							<a href="#"><img class="img-responsive" src="images/trainer-2.jpg" alt="trainer"></a>
+							<div class="title">
+								<h3><a href="#">Arnold Smith</a></h3>
+								<span>Body Building Expert</span>
+							</div>
+							<div class="desc text-center">
+								<ul class="fh5co-social-icons">
+									<li><a href="#"><i class="icon-twitter"></i></a></li>
+									<li><a href="#"><i class="icon-facebook"></i></a></li>
+									<li><a href="#"><i class="icon-linkedin"></i></a></li>
+									<li><a href="#"><i class="icon-dribbble"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 animate-box">
+						<div class="trainer">
+							<a href="#"><img class="img-responsive" src="images/trainer-3.jpg" alt="trainer"></a>
+							<div class="title">
+								<h3><a href="#">Rachel Seely</a></h3>
+								<span>Yoga Expert</span>
+							</div>
+							<div class="desc text-center">
+								<ul class="fh5co-social-icons">
+									<li><a href="#"><i class="icon-twitter"></i></a></li>
+									<li><a href="#"><i class="icon-facebook"></i></a></li>
+									<li><a href="#"><i class="icon-linkedin"></i></a></li>
+									<li><a href="#"><i class="icon-dribbble"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+
+
 
 		<div id="fh5co-started" class="fh5co-bg" style="background-image: url(images/img_bg_3.jpg);">
 			<div class="overlay"></div>
@@ -181,6 +206,8 @@
 		</div>
 
 
+
+
 		<footer id="fh5co-footer" class="fh5co-bg" style="background-image: url(images/img_bg_1.jpg);"
 			role="contentinfo">
 			<div class="overlay"></div>
@@ -188,7 +215,8 @@
 				<div class="row row-pb-md">
 					<div class="col-md-4 fh5co-widget">
 						<h3>A Little About Shapeshift.</h3>
-						<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta
+						<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque
+							dicta
 							adipisci architecto culpa amet.</p>
 						<p><a class="btn btn-primary" href="#">Become A Member</a></p>
 					</div>
@@ -229,8 +257,8 @@
 				<div class="row copyright">
 					<div class="col-md-12 text-center">
 						<p>
-							<small class="block">&copy; All Rights Reserved.</small>
-							<small class="block">Designed by us </small>
+							<!-- <small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>  -->
+							<small class="block">Designed by us</small>
 						</p>
 						<p>
 						<ul class="fh5co-social-icons">
@@ -268,12 +296,6 @@
 	<!-- Magnific Popup -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/magnific-popup-options.js"></script>
-	<!-- Google Map -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
-
-
 	<!-- making anchor to make post req  -->
 	<script src="js/postreq.js"></script>
 	<!-- Main -->
