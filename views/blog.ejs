@@ -4,7 +4,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Shapeshift </title>
+	<title>Shapeshift &mdash; </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content="" />
 	<meta property="og:image" content="" />
 	<meta property="og:url" content="" />
@@ -59,10 +64,10 @@
 							<div class="col-xs-10 text-right menu-1">
 								<ul>
 									<li><a class="postForm" href="home">Home</a></li>
-									<li><a class="postForm" href="gallery">Gallery</a></li>
+									<li ><a class="postForm" href="gallery">Gallery</a></li>
 									<li><a class="postForm" href="trainer">Trainer</a></li>
 									<li><a class="postForm" href="pricing">Pricing</a></li>
-									<li>
+									<li class="active">
 										<a class="postForm" href="blog">Blog</a>
 									</li>
 									<li><a class="postForm" href="contact">Contact</a></li>
@@ -75,6 +80,7 @@
 				</div>
 		</nav>
 
+
 		<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner"
 			style="background-image:url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
 			<div class="overlay"></div>
@@ -84,7 +90,7 @@
 						<div class="display-t">
 							<div class="display-tc animate-box" data-animate-effect="fadeIn">
 								<h1>Blog</h1>
-								<!-- <h2>Free html5 templates Made by <a href="http://freehtml5.co" target="_blank">freehtml5.co</a></h2> -->
+								<p><a href="addblog" class="btn btn-primary">ADD BLOG</a></p>
 							</div>
 						</div>
 					</div>
@@ -97,11 +103,12 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-						<h2>Recent Blog</h2>
+						<h2>Recent Blogs</h2>
 						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem
 							provident. Odit ab aliquam dolor eius.</p>
 					</div>
 				</div>
+
 				<div class="row row-bottom-padded-md">
 					<div class="col-lg-4 col-md-4">
 						<div class="fh5co-blog animate-box">
@@ -159,6 +166,30 @@
 							</div>
 						</div>
 					</div>
+
+
+					<!-- start -->
+
+					<% for(let item of blogs){%>
+					<div class="col-lg-4 col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="#"><img class="img-responsive" src= " <%= item.url%> " alt="blog image"></a>
+							<div class="blog-text">
+								<h3><a href="" #><%= item.title %></a></h3>
+								<span class="posted_on"><p> <%= item.data %></p></span>
+								<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+								<p>
+									<%= item.blog_txt %></p>
+
+								<a href="#" class="btn btn-primary">Read More</a>
+							</div>
+						</div>
+					</div>
+					<%}%>
+
+
+					<!-- //enddd -->
+
 				</div>
 			</div>
 		</div>
