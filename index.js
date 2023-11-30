@@ -113,7 +113,7 @@ app.post("/index", async (req, res) => {
     const user_pass = req.body.password.toLowerCase();
     const data = await auth.findOne({ email: user_email });
     if (data.pass === user_pass) {
-      username = data.name.split(" ")[0];
+      let username = data.name.split(" ")[0];
       res.render("index", { username });
     } else {
       res.send("password is incorrect");

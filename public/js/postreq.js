@@ -1,6 +1,7 @@
 let anchors = document.querySelectorAll(".postForm");
 // console.log(anchors);
 
+
 for (let anchor of anchors) {
   anchor.addEventListener("click", (e) => {
     e.preventDefault(); // prevent the default behavior of the anchor tag

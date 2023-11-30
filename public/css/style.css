@@ -1389,8 +1389,15 @@ figure {
     width: 100%;
   }
 }
+#blog_para
+{
+  height: 200px;
+  overflow: hidden;
+}
 
 .fh5co-blog .blog-text {
+  
+  /* height: 400px; */
   margin-bottom: 30px;
   position: relative;
   background: #fff;

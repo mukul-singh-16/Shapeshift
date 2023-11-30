@@ -109,7 +109,7 @@
 					</div>
 				</div>
 
-				<div class="row row-bottom-padded-md">
+				<div  style="display: flex; flex-wrap: wrap;" class="row row-bottom-padded-md">
 					<div class="col-lg-4 col-md-4">
 						<div class="fh5co-blog animate-box">
 							<a href="#"><img class="img-responsive" src="images/banana.jpg" alt=""></a>
@@ -117,12 +117,14 @@
 								<h3><a href="" #>Is banana good for weight loss?</a></h3>
 								<span class="posted_on">Sep. 15th</span>
 								<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+								<div id="blog_para">
 								<p>Bananas Are A Healthful Addition To A Balanced Diet For Weight Loss, As They Provide
 									A Range Of Vital Nutrients And Are A Good Source Of Fiber. Bananas Make An Excellent
 									Snack Food, Dessert Or Breakfast. Their Versatility Makes Them Easy To Add To Your
 									Diet Plan For Weight Loss."There is absolutely nothing wrong with eating bananas as
 									a part of a balanced diet rich in whole foods.
 								</p>
+							</div>
 								<a href="#" class="btn btn-primary">Read More</a>
 							</div>
 						</div>
@@ -134,6 +136,7 @@
 								<h3><a href="" #>One of the most protein-rich fruits around-Guava</a></h3>
 								<span class="posted_on">Sep. 15th</span>
 								<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+								<div id="blog_para">
 								<p>Guava is one of the most protein-rich fruits around. You’ll get a whopping 4.2 grams
 									of the stuff in every cup. This tropical fruit is also high in vitamin C and fiber.
 									You can even eat the seeds and
@@ -141,6 +144,7 @@
 									calories and over 23 grams of carbohydrates.A full 1-cup serving of guava provides
 									112 cal and over 23 grams of carb..The glycemic index of guava is
 									12-24, which is very low for fruit.</p>
+								</div>
 								<a href="#" class="btn btn-primary">Read More</a>
 							</div>
 						</div>
@@ -152,6 +156,7 @@
 								<h3><a href="" #>Is Sugarcane Juice Good for Weight Loss?</a></h3>
 								<span class="posted_on">Sep. 15th</span>
 								<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+								<div id="blog_para">
 								<p>Not only is sugarcane good for weight loss, but it also contains vital minerals
 									essential for post-workout hydration.
 
@@ -162,6 +167,7 @@
 									A study shows sugarcane juice is equally effective as commercial sports drinks
 									during exercise. Moreover, it is a more effective rehydration drink.
 								</p>
+							</div>
 								<a href="#" class="btn btn-primary">Read More</a>
 							</div>
 						</div>
@@ -178,8 +184,14 @@
 								<h3><a href="" #><%= item.title %></a></h3>
 								<span class="posted_on"><p> <%= item.date %></p></span>
 								<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-								<p>
-									<%= item.blog_txt %></p>
+
+								<div id="blog_para">
+									<p>
+										<%= item.blog_txt %></p>
+
+								</div>
+								<br>
+								
 
 								<a href="#" class="btn btn-primary">Read More</a>
 							</div>
