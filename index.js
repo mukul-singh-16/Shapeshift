@@ -22,9 +22,6 @@ mongoose
     console.log("failed");
   });
 
-
-
-
 //auth model
 const authentication = new mongoose.Schema({
   name: {
@@ -42,11 +39,6 @@ const authentication = new mongoose.Schema({
 });
 
 const auth = mongoose.model("auth", authentication);
-
-
-
-
-
 
 //blog model
 
