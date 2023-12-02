@@ -8,7 +8,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 
-let username = "xyz";
+let username = "";
 
 //mongoos connection
 mongoose
@@ -105,7 +105,7 @@ app.post("/index", async (req, res) => {
     const user_pass = req.body.password.toLowerCase();
     const data = await auth.findOne({ email: user_email });
     if (data.pass === user_pass) {
-      let username = data.name.split(" ")[0];
+       username = data.name.split(" ")[0];
       res.render("index", { username });
     } else {
       res.send("password is incorrect");
