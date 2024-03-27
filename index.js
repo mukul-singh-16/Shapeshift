@@ -2,18 +2,22 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+const ejsMate = require('ejs-mate');
+const methodOverride = require('method-override');
+const session = require('express-session')
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const dotenv=require('dotenv').config()
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+const User = require('./Models/auth')
 
-
-let username = "";
 
 //mongoos connection
 mongoose
   .connect(
     "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
+    // "mongodb://localhost:27017/shapeshift"
   )
   .then(() => {
     console.log("mongoose connected");
@@ -22,160 +26,90 @@ mongoose
     console.log("failed");
   });
 
-//auth model
-const authentication = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+
+app.engine('ejs', ejsMate);
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname,"views"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(methodOverride('_method'));
+
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {  
+    httpOnly: true,
+    expires: Date.now() + 1000* 60 * 60 * 24 * 7,
+    maxAge:1000* 60 * 60 * 24 * 7 * 1
+  }
+}));
+
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+  passport.serializeUser((user,done)=>{
+    done(null,user);
+  })
+  passport.deserializeUser((user,done)=>{
+    done(null,user);
+  })
+
+ 
+// passport.serializeUser(User.SerializeUser());
+
+// passport.deserializeUser(User.deserializeUser());
+  //passport  check krega username and password using authenticate method provided by the passport-local-mongoose package
+// passport.use(new LocalStrategy(User.authenticate())); 
+
+
+  passport.use(new GoogleStrategy({
+    clientID:     process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:5000/auth/google/callback",
+    passReqToCallback   : true
   },
-  email: {
-    type: String,
-    required: true,
-  },
-  pass: {
-    type: String,
-    required: true,
-  },
-});
-
-const auth = mongoose.model("auth", authentication);
-
-//blog model
-
-let arr=new Date().toDateString().split(" ");
-let date=arr[2]+" "+arr[1]
-const blog = new mongoose.Schema({
-  url: {
-    type: String,
-    required: true,
-  },
-  title:{
-    type: String,
-    required: true,
-
-  },
-  blog_txt: {
-    type: String,
-    required: true,
-  },
-  date: {
-    type: String,
-    default: date,
-  },
-});
-
-
-const myblog = mongoose.model("myblog", blog);
+  function(request, accessToken, refreshToken, profile, done) {
+    done(null,profile);
+  }
+));
 
 
 
 
+  app.use((req, res, next) => {
+    res.locals.currentUser = "";
+    res.locals.currentusermail="";
+    res.locals.success=req.flash('success')
+    res.locals.error=req.flash('error');
+    if(req.user)
+    {
+      const username=(req.user.displayName.split(' '))[0];
+     res.locals.currentUser= username.toUpperCase();
+     res.locals.currentusermail= req.user.email;
+    }
+    next();
+  })
+  
 
 
 //all the routes
-app.post("/signup", async (req, res) => {
-  try {
-    const data = new auth({
-      name: req.body.username.toUpperCase(),
-      email: req.body.email.toLowerCase(),
-      pass: req.body.password.toLowerCase(),
-    });
-    await data.save();
-  } catch (err) {
-    console.log(err);
-  }
-  res.sendFile(path.join(__dirname, "public", "login.html"));
-});
+const BlogRoutes = require('./routes/blogs');
+const AuthRoutes = require('./routes/auth');
+const NormalRoutes = require('./routes/normalRoutes');
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
-});
+app.use(AuthRoutes);
+app.use(BlogRoutes);
+app.use(NormalRoutes);
 
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
-});
 
-app.get("/logout", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
-});
 
-app.post("/index", async (req, res) => {
-  try {
-    const user_email = req.body.email.toLowerCase();
-    const user_pass = req.body.password.toLowerCase();
-    const data = await auth.findOne({ email: user_email });
-    if (data.pass === user_pass) {
-       username = data.name.split(" ")[0];
-      res.render("index", { username });
-    } else {
-      res.send("password is incorrect");
-    }
-  } catch (e) {
-    res.send("Email Id not Found");
-  }
-});
-
-app.post("/home", (req, res) => {
-  res.render("index", { username });
-});
-
-app.post("/trainer", (req, res) => {
-  res.render("trainer", { username });
-});
-
-app.post("/blog",async(req, res) => {
-  const blogs=await myblog.find({})
-  res.render("blog", { username:username , blogs:blogs });
-});
-
-app.get("/blog",async(req, res) => {
-  const blogs=await myblog.find({})
-  res.render("blog",{
-    username:username , blogs:blogs});
-});
-
-app.post("/contact", (req, res) => {
-  res.render("contact", { username });
-});
-app.post("/gallery", (req, res) => {
-  res.render("gallery", { username });
-});
-
-app.post("/pricing", (req, res) => {
-  res.render("pricing", { username });
-});
-
-app.post("/weightlifting", (req, res) => {
-  res.render("weightlifting", { username });
-});
-
-app.post("/yoga", (req, res) => {
-  res.render("yoga", { username });
-});
-
-app.post("/running", (req, res) => {
-  res.render("running", { username });
-});
-app.get("/addblog", (req, res) => {
-  res.render("addBlog", { username });
-});
-
-app.post("/addblog", async (req, res) => {
-  // console.log(req.body);
-  try {
-    const blog_data = new myblog({
-      url: req.body.url,
-      title:req.body.title,
-      blog_txt: req.body.blog_txt,
-    });
-    await blog_data.save();
-    // console.log(blog_data);
-    res.redirect("/blog");
-  } catch (e) {
-    console.log("error");
-  }
-});
-
-app.listen(3000, () => {
+app.listen(5000, () => {
   console.log("connect to server");
 });
