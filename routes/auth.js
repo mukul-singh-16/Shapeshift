@@ -26,8 +26,21 @@ router.post('/login', passport.authenticate('local', {
  
   req.flash('success', `Welcome Back  ${req.user.username} Again!!`);
   console.log('Logged In Successfully!');
- 
   let redirecturl=currenturl||'/home'
+
+  if(redirecturl && redirecturl.indexOf('user')!==-1)
+  {
+      redirecturl = ('/products');
+  }
+  
+  if(redirecturl && redirecturl.indexOf('review')!==-1)
+  {
+      redirecturl=redirecturl.split('/');
+      redirecturl.pop();
+      redirecturl=redirecturl.join('/');   
+  }
+ 
+
   res.redirect(redirecturl);
   }
   catch(e)
@@ -43,7 +56,7 @@ router.post('/login', passport.authenticate('local', {
 router.post('/register', async (req,res)=>{
   // console.log("hwloo")
   try {
-    console.log("register post request")
+    // console.log("register post request")
     const { username, password, email } = req.body;
     const user = new User({ username, email });
     const newUser = await User.register( user, password);

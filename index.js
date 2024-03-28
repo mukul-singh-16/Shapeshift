@@ -72,7 +72,7 @@ passport.use(new LocalStrategy(User.authenticate()));
   passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://shapeshift.onrender.com./auth/google/callback",
+    callbackURL: "https://shapeshift.onrender.com/auth/google/callback",
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
