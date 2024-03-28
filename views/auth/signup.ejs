@@ -18,44 +18,8 @@
     <div class="container">
 
         <div class="forms">
-            <div class="form login">
-                <span class="title">Login</span>
-                <form action="/login" method="post">
-
-                    <div class="input-field">
-                        <input id="inp-email" type="text" placeholder="Username" name="username" required>
-                        <i class="uil uil-envelope icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" id="inp-pass" class="password" placeholder="Password"
-                            name="password" required>
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
-                    <div class="checkbox-text">
-                        <div class="checkbox-content">
-                            <input type="checkbox" id="logCheck">
-                            <label for="logCheck" class="text">Remember me</label>
-                        </div>
-
-                        <a href="#" class="text">Forgot password?</a>
-                    </div>
-
-                    <div class="input-field button">
-                        <button type="submit">login</button>
-                    </div>
-
-                    <div class="checkbox-text">
-                        <a class="text signup-link" href="/register" >Signup Now</a>
-
-                        <a class="text signup-link" href="/auth/google">Signin with google</a>
-                    </div>
-                
-                
-            </div>
-
             <!-- Signup Form -->
-            <!-- <div class="form signup">
+            <div class="form signup">
                 <span class="title">Registration</span>
 
 
@@ -80,13 +44,13 @@
                 </form>
                 <div class="login-signup">
                     <span class="text">Already have an account?
-                        <a class="text login-link">Log In</a>
+                        <a class="text login-link" href="/login">Log In</a>
                     </span>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
-    <script src="js/login.js"></script>
+    <!-- <script src="js/login.js"></script> -->
 </body>
 
 </html>

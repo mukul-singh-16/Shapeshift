@@ -8,6 +8,6 @@ const authentication = new mongoose.Schema({
 
   authentication.plugin(passportLocolMongoose);
   
-  const Auth = mongoose.model("Auth", authentication);
+  const User = mongoose.model("User", authentication);
   
-module.exports={ Auth }
+module.exports= User; 

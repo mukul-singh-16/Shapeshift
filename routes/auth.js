@@ -2,19 +2,68 @@ const express = require('express')
 const router = express.Router();
 const passport=require('passport');
 const path = require("path");
+const User =require('../Models/auth');
+const { route } = require('./blogs');
+
+// console.log("auth js route");
 
 router.get('/login',(req,res)=>{
   res.render('auth/login');
 })
 
-router.post('/login',(req,res)=>{
-  res.send("bhai gogel se login krle")
+router.get('/register',(req,res)=>{
+  res.render('auth/signup');
 })
 
 
+router.post('/login', passport.authenticate('local', { 
+  failureRedirect: '/login',
+  failureFlash: true
+}), 
+(req, res) => {
+  try{
 
-router.post('/register',(req,res)=>{
-  res.send("bhai gogel se login krle")
+ 
+  req.flash('success', `Welcome Back  ${req.user.username} Again!!`);
+  console.log('Logged In Successfully!');
+ 
+  let redirecturl=currenturl||'/home'
+  res.redirect(redirecturl);
+  }
+  catch(e)
+  {
+    res.redirect('/home')
+  }
+}
+);
+
+
+
+
+router.post('/register', async (req,res)=>{
+  // console.log("hwloo")
+  try {
+    console.log("register post request")
+    const { username, password, email } = req.body;
+    const user = new User({ username, email });
+    const newUser = await User.register( user, password);
+
+    req.login(newUser, function(err) {
+        if (err){
+            return next(err);
+        }
+
+        req.flash('success', 'Welcome , You are Registered Successfully');
+
+        return res.redirect('/home');
+    });
+}
+catch (e) {
+    req.flash('error', e.message);
+    // res.send(e.message)
+    console.log(e.message);
+    res.redirect('/login');
+}
 })
 
 

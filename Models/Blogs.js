@@ -23,10 +23,9 @@ const blog = new mongoose.Schema({
     type: String,
     default: date,
   },
-  usermail:{
+  userid:{
     type:String,
     require:true
-    // default:currentusermail
   },
   reviews: [
     {

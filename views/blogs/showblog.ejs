@@ -3,30 +3,27 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Shapeshift &mdash;</title>
+	<title>Shapeshift</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="/css/animate.css">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="/css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
-
+	<link rel="stylesheet" href="/css/bootstrap.css">
 	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
-
+	<link rel="stylesheet" href="/css/magnific-popup.css">
 	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-
+	<link rel="stylesheet" href="/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/css/owl.theme.default.min.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
-
+	<link rel="stylesheet" href="/css/style.css">
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	
 
+	<script src="/js/modernizr-2.6.2.min.js"></script>
 </head>
 
 <body>
@@ -41,37 +38,87 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-2">
-								<div id="fh5co-logo"><a href="home">Shapeshift</a></div>
+								<div id="fh5co-logo"><a href="../home">Shapeshift</a></div>
 							</div>
 							<div class="col-xs-10 text-right menu-1">
 								<ul>
-									<li><a href="home">Home</a></li>
-									<li><a href="gallery">Gallery</a></li>
-									<li><a href="trainer">Trainer</a></li>
-									<li><a href="pricing">Pricing</a></li>
-									<li>
-										<a href="blog">Blog</a>
-									</li>
-									<li class="active"><a href="contact">Contact</a></li>
-									<!-- <li class="btn-cta"><a href="#"><span>Login</span></a></li> -->
+									<li><a href="../home">Home</a></li>
+									<li><a href="../gallery">Gallery</a></li>
+									<li><a href="../trainer">Trainer</a></li>
+									<li><a href="../pricing">Pricing</a></li>
+									<li><a href="../blog">Blog</a></li>
+									<li><a href="../contact">Contact</a></li>
 								</ul>
 							</div>
 						</div>
-
 					</div>
 				</div>
 		</nav>
 
 
+		<div>
+			<div class="card" >
+				<div style="width: fit-content;
+				margin-left: auto;
+				margin-right: auto;"><img  style="width: 100%;" class="card-img-top"  src=<%= blog.url%> alt="Card image cap"></div>
+				
+				<div  style="margin: 10px;" class="card-body">
+				  <h2  class="card-title" style="text-align: center; font-weight:bold; margin: 10px;"><%= blog.title%></h2>
+				  <p style="font-size: 1.5rem;"><%= blog.blog_txt%></p>
+
+				  <% if( user && (user._id ==blog.userid)) {%>
+					<div style="display: flex;">
+						<a class="btn btn-primary" href= <%=`../blog/${blog._id}/update`%> > update</a>
+						<form action= "../blog/<%=blog._id%>?_method=DELETE"   method="POST">
+							<button  class="btn btn-primary" type="submit"> Delete</button>
+						</form>
+					</div>
+					
+
+				<%}%>
+				</div>
+
+			  </div>
 
 
-		
-		
+			  <div style="width: fit-content;
+			  margin-left: auto;
+			  margin-right: auto;">
+				<h2 >comments</h2>
 
-		
+				<form action="/blog/<%= blog._id %>/review" method="POST">
+					<input type="text" placeholder="comment" name="comment">
+					<button type="submit">submit</button>
+				</form>
+				
+
+				
+				<section  style="width: 100%;">
+					<% for(let cmt of blog.reviews) { %>
+					<div class="col-sm-6">
+						<div class="card">
+						  <div class="card-body">
+							<h5 class="card-title"><%=cmt.authorname%></h5>
+							<p class="card-text"><%= cmt.comment %></p>
+							<% if(user && user._id=== cmt.authorid){%>
+							<form action="<%= blog._id%>/review/<%=cmt._id%>?_method=DELETE"  method="POST">
+								<button  class="btn btnn" type="submit"> Delete</button>
+							</form>
+							<%}%>
+						  </div>
+						</div>
+					  </div>
+				<%}%>
+
+					  
+				</section>
+		</div>
+
+		 
 
 
-		<footer id="fh5co-footer" class="fh5co-bg" style="background-image: url(images/img_bg_1.jpg);"
+
+		<footer id="fh5co-footer" class="fh5co-bg" style="background-image: url(/images/img_bg_1.jpg);"
 			role="contentinfo">
 			<div class="overlay"></div>
 			<div class="container">
@@ -141,32 +188,28 @@
 	</div>
 
 	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="/js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="/js/jquery.waypoints.min.js"></script>
 	<!-- Stellar Parallax -->
-	<script src="js/jquery.stellar.min.js"></script>
+	<script src="/js/jquery.stellar.min.js"></script>
 	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
 	<!-- countTo -->
-	<script src="js/jquery.countTo.js"></script>
+	<script src="/js/jquery.countTo.js"></script>
 	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
-	<!-- Google Map -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/magnific-popup-options.js"></script>
 
 
 	<!-- making anchor to make post req  -->
-	<script src="js/postreq.js"></script>
+	<script src="/js/postreq.js"></script>
 	<!-- Main -->
-	<script src="js/main.js"></script>
+	<script src="/js/main.js"></script>
 
 </body>
 

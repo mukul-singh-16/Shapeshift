@@ -1,10 +1,13 @@
 const Joi = require('joi');
 
 module.exports.blogSchema = Joi.object({
-    imgurl: Joi.string().required(),
+    url: Joi.string().required(),
     title: Joi.string().required(),
-    blog_txt: Joi.string().required(),
-    date: Joi.date().required()
+    blog_txt: Joi.string().required()
 });
 
  
+module.exports.commentSchema = Joi.object({
+    comment: Joi.string().required(),
+    gmail:Joi.string().required()
+});

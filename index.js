@@ -16,8 +16,8 @@ const User = require('./Models/auth')
 //mongoos connection
 mongoose
   .connect(
-    "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
-    // "mongodb://localhost:27017/shapeshift"
+    // "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb://localhost:27017/shapeshift"
   )
   .then(() => {
     console.log("mongoose connected");
@@ -62,17 +62,17 @@ app.use(passport.session());
   })
 
  
-// passport.serializeUser(User.SerializeUser());
+passport.serializeUser(User.serializeUser());
 
-// passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(User.deserializeUser());
   //passport  check krega username and password using authenticate method provided by the passport-local-mongoose package
-// passport.use(new LocalStrategy(User.authenticate())); 
+passport.use(new LocalStrategy(User.authenticate())); 
 
 
   passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://www.shapeshift.onrender.com/auth/google/callback",
+    callbackURL: "https://shapeshift.onrender.com./auth/google/callback",
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
@@ -86,14 +86,24 @@ app.use(passport.session());
   app.use((req, res, next) => {
     res.locals.currentUser = "";
     res.locals.currentusermail="";
+    res.locals.user="";
     res.locals.success=req.flash('success')
     res.locals.error=req.flash('error');
-    if(req.user)
+    res.locals.currenturl="/home";
+    if(req.user && req.user.displayName)
     {
+      res.locals.user=req.user;
       const username=(req.user.displayName.split(' '))[0];
      res.locals.currentUser= username.toUpperCase();
      res.locals.currentusermail= req.user.email;
     }
+    if(req.user && req.user.username)
+    {
+      res.locals.user=req.user;
+      res.locals.currentUser= req.user.username.toUpperCase();
+      res.locals.currentusermail= req.user.email;
+    }
+
     next();
   })
   
