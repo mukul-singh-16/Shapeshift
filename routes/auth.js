@@ -26,11 +26,12 @@ router.post('/login', passport.authenticate('local', {
  
   req.flash('success', `Welcome Back  ${req.user.username} Again!!`);
   console.log('Logged In Successfully!');
+
   let redirecturl=currenturl||'/home'
 
   if(redirecturl && redirecturl.indexOf('user')!==-1)
   {
-      redirecturl = ('/products');
+      redirecturl = ('/home');
   }
   
   if(redirecturl && redirecturl.indexOf('review')!==-1)
@@ -41,7 +42,7 @@ router.post('/login', passport.authenticate('local', {
   }
  
 
-  res.redirect(redirecturl);
+  res.redirect('/home');
   }
   catch(e)
   {
