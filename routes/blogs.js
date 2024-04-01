@@ -6,7 +6,7 @@ const {islogin} =require('../middleware')
 
 
 router.get("/blog",async(req, res) => {
-  const blogs=await myblog.find({})
+  const blogs=await myblog.find()
   res.render("blogs/blog",{blogs:blogs});
 });
 

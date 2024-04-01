@@ -89,7 +89,7 @@ router.get('/auth/google',
 
 
 
-router.get( '/auth/google/callback',
+router.get('/auth/google/callback',
 passport.authenticate( 'google', {
       failureRedirect: '/login',
       failureFlash: true
