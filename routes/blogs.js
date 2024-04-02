@@ -68,6 +68,7 @@ router.patch('/blog/:id',async (req, res) => {
       const { id } = req.params;
       const { url, title, blog_txt } = req.body;
       await myblog.findByIdAndUpdate(id, {url, title, blog_txt});
+      
       req.flash('success', 'Your blog has been edited');
       res.redirect('/blog');
   }
