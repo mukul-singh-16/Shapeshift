@@ -32,7 +32,6 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride('_method'));
-
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -45,8 +44,7 @@ app.use(session({
   cookie: {  
     httpOnly: true,
     expires: Date.now() + 1000* 60 * 60 * 24 * 7,
-    maxAge:1000* 60 * 60 * 24 * 7 * 1,
-    secure: true 
+    maxAge:1000* 60 * 60 * 24 * 7 * 1
   }
 }));
 
@@ -66,7 +64,8 @@ app.use(passport.session());
 passport.serializeUser(User.serializeUser());
 
 passport.deserializeUser(User.deserializeUser());
-  //passport  check krega username and password using authenticate method provided by the passport-local-mongoose package
+
+//passport  check krega username and password using authenticate method provided by the passport-local-mongoose package
 passport.use(new LocalStrategy(User.authenticate())); 
 
 

@@ -104,6 +104,7 @@ passport.authenticate( 'google', {
 router.get('/logout', (req, res) => {
   req.logout(function(err) {
       if (err) { return next(err); }
+      req.logOut()
       req.flash('success', 'GoodBye!!');
       res.redirect('/home');
     });
