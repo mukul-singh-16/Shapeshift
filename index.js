@@ -16,7 +16,7 @@ const User = require('./Models/auth')
 //mongoos connection
 mongoose
   .connect(
-    "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://mukul1singh23:BAO7Kco7rRX6tCH7@cluster0.iyc1a.mongodb.net/"
     // "mongodb://localhost:27017/shapeshift"
   )
   .then(() => {
@@ -53,6 +53,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+
   passport.serializeUser((user,done)=>{
     done(null,user);
   })
@@ -73,9 +74,8 @@ passport.use(new LocalStrategy(User.authenticate()));
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     // callbackURL: "https://shapeshift.onrender.com/auth/google/callback",
-    // callbackURL: "http://localhost:5000/auth/google/callback",
-    callbackURL: "https://shapeshift.vercel.app/auth/google/callback",
-    
+    callbackURL: "http://localhost:5000/auth/google/callbackgoogle/callback",
+    // callbackURL: "https://shapeshift.vercel.app/auth/google/callback",
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
@@ -93,6 +93,7 @@ passport.use(new LocalStrategy(User.authenticate()));
     res.locals.success=req.flash('success')
     res.locals.error=req.flash('error');
     res.locals.currenturl="/home";
+
     if(req.user && req.user.displayName)
     {
       res.locals.user=req.user;
@@ -100,6 +101,7 @@ passport.use(new LocalStrategy(User.authenticate()));
      res.locals.currentUser= username.toUpperCase();
      res.locals.currentusermail= req.user.email;
     }
+
     if(req.user && req.user.username)
     {
       res.locals.user=req.user;
@@ -108,6 +110,7 @@ passport.use(new LocalStrategy(User.authenticate()));
     }
 
     next();
+
   })
   
 

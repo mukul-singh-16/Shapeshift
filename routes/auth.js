@@ -20,33 +20,33 @@ router.post('/login', passport.authenticate('local', {
   failureFlash: true
 }), 
 (req, res) => {
-  try{
-
- 
-  req.flash('success', `Welcome Back  ${req.user.username} Again!!`);
-  console.log('Logged In Successfully!');
-
-  let redirecturl=currenturl||'/home'
-
-  if(redirecturl && redirecturl.indexOf('user')!==-1)
+  try
   {
-      redirecturl = ('/home');
-  }
+    req.flash('success', `Welcome Back  ${req.user.username} Again!!`);
+    console.log('Logged In Successfully!');
+
+    let redirecturl=currenturl||'/home'
+
+    if(redirecturl && redirecturl.indexOf('user')!==-1)
+    {
+        redirecturl = ('/home');
+    }
+    
+    if(redirecturl && redirecturl.indexOf('review')!==-1)
+    {
+        redirecturl=redirecturl.split('/');
+        redirecturl.pop();
+        redirecturl=redirecturl.join('/');   
+    }
   
-  if(redirecturl && redirecturl.indexOf('review')!==-1)
-  {
-      redirecturl=redirecturl.split('/');
-      redirecturl.pop();
-      redirecturl=redirecturl.join('/');   
-  }
- 
 
-  res.redirect('/home');
-  }
-  catch(e)
-  {
-    res.redirect('/home')
-  }
+    res.redirect('/home');
+    }
+    catch(e)
+    {
+      req.flash('fail', `u have to register first !!!`);
+      res.redirect('/home')
+    }
 }
 );
 
@@ -95,19 +95,23 @@ passport.authenticate( 'google', {
 }),(req,res)=>{
   req.flash('success', `Welcome ${req.user.displayName} Again!!`);
   console.log(req.user.displayName);
-  res.redirect('/home');
+    res.redirect('/home');
 
 });
 
 
-router.get('/logout', (req, res) => {
-  req.logout(function(err) {
-      if (err) { return next(err); }
-      req.logOut()
-      req.flash('success', 'GoodBye!!');
-      res.redirect('/home');
-    });
+router.get('/logout', (req, res, next) => {
+  req.logout((err) => {
+    if (err) { 
+      console.log("Error during logout:", err);
+      return next(err); // Pass the error to the next middleware
+    }
+    req.flash('success', 'GoodBye!!');
+    res.redirect('/home');
+  });
 });
+
+
 
 
   
