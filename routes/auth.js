@@ -3,7 +3,6 @@ const router = express.Router();
 const passport=require('passport');
 const path = require("path");
 const User =require('../Models/auth');
-const { route } = require('./blogs');
 
 // console.log("auth js route");
 

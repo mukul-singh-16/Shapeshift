@@ -37,23 +37,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-// const session = require('express-session');
-// const RedisStore = require('connect-redis')(session);
-// const redisClient = require('redis').createClient();
-
-// app.use(session({
-//   store: new RedisStore({ client: redisClient }),
-//   secret: 'your-secret',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { secure: false } // Set secure to true if using HTTPS
-// }));
-
 app.use(session({
-  // store: new RedisStore({ client: redisClient }),
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {  
     httpOnly: true,
     expires: Date.now() + 1000* 60 * 60 * 24 * 7,
