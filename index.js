@@ -16,7 +16,7 @@ const User = require('./Models/auth')
 //mongoos connection
 mongoose
   .connect(
-    "mongodb+srv://mukul1singh23:BAO7Kco7rRX6tCH7@cluster0.iyc1a.mongodb.net/"
+    "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
     // "mongodb://localhost:27017/shapeshift"
   )
   .then(() => {
