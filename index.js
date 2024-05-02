@@ -16,8 +16,7 @@ const User = require('./Models/auth')
 //mongoos connection
 mongoose
   .connect(
-    "mongodb+srv://shapeshiftDB:rajatdb448@shapeshift.s1s4lbp.mongodb.net/?retryWrites=true&w=majority"
-    // "mongodb://localhost:27017/shapeshift"
+    process.env.MONGODB_URI
   )
   .then(() => {
     console.log("mongoose connected");
@@ -87,6 +86,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 
   app.use((req, res, next) => {
+    console.log("req.user")
+    console.log(req.user)
     res.locals.currentUser = "";
     res.locals.currentusermail="";
     res.locals.user="";
