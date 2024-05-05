@@ -4,13 +4,14 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
-const session = require('express-session')
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const dotenv=require('dotenv').config()
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 const User = require('./Models/auth')
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 
 //mongoos connection
@@ -36,16 +37,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
+
+const mongooseConnection = mongoose.connection;
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: {  
+  cookie: {
     httpOnly: true,
-    expires: Date.now() + 1000* 60 * 60 * 24 * 7,
-    maxAge:1000* 60 * 60 * 24 * 7 * 1
-  }
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 1 week
+    maxAge: 1000 * 60 * 60 * 24 * 7 * 1
+  },
+  store: new MongoStore({ 
+    mongoUrl: process.env.MONGODB_URI, 
+    mongooseConnection,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }), // Use MongoDB to store sessions
 }));
+
+
+
+
 
 
 app.use(flash());
@@ -85,34 +99,30 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 
 
-  app.use((req, res, next) => {
-    console.log("req.user")
-    console.log(req.user)
-    res.locals.currentUser = "";
-    res.locals.currentusermail="";
-    res.locals.user="";
-    res.locals.success=req.flash('success')
-    res.locals.error=req.flash('error');
-    res.locals.currenturl="/home";
+  // Modify the middleware to properly set currentUser and currentusermail
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  res.locals.currenturl = "/home";
 
-    if(req.user && req.user.displayName)
-    {
-      res.locals.user=req.user;
-      const username=(req.user.displayName.split(' '))[0];
-     res.locals.currentUser= username.toUpperCase();
-     res.locals.currentusermail= req.user.email;
+  if (req.user) {
+    res.locals.user = req.user;
+    if (req.user.displayName) {
+      const username = req.user.displayName.split(' ')[0];
+      res.locals.currentUser = username.toUpperCase();
+      res.locals.currentusermail = req.user.email;
+    } else if (req.user.username) {
+      res.locals.currentUser = req.user.username.toUpperCase();
+      res.locals.currentusermail = req.user.email;
     }
+  } else {
+    res.locals.currentUser = ""; // Clear currentUser if not logged in
+    res.locals.currentusermail = "";
+    res.locals.user = "";
+  }
 
-    if(req.user && req.user.username)
-    {
-      res.locals.user=req.user;
-      res.locals.currentUser= req.user.username.toUpperCase();
-      res.locals.currentusermail= req.user.email;
-    }
-
-    next();
-
-  })
+  next();
+});
   
 
 
